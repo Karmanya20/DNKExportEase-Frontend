@@ -1,7 +1,15 @@
 "use client";
 import {Avatar} from "@radix-ui/themes";
-
+import Axios from "axios";
 export default function AvatarComponent() {
+    const handleSignout=async ()=>{
+        try {
+            const response = await Axios.post('http://localhost:8000/remove');
+            console.log(response.data.message); 
+          } catch (error) {
+            console.error('Error logging out:', error);
+          }
+    };
   return (
 <div className="group flex justify-center h-full">
     <div className="relative inline-block mt-2">
@@ -44,7 +52,7 @@ export default function AvatarComponent() {
             <a href="#" className="block px-4 py-3 text-sm text-black capitalize transition-colors duration-200 transform  ">
                 Help
             </a>
-            <a href="#" className="block px-4 py-3 text-sm text-black capitalize transition-colors duration-200 transform  ">
+            <a href="#" onClick={handleSignout} className="block px-4 py-3 text-sm text-black capitalize transition-colors duration-200 transform  ">
                 Sign Out
             </a>
         </div>
